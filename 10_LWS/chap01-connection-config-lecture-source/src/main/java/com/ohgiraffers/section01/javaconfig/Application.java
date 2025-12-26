@@ -58,13 +58,16 @@ public class Application {
     * SqlSession : 실제 DB와 연결되어 상호작용하는 객체
     * openSession(false) : 수동 커밋 모드로 Session을 생성
     * */
-    SqlSession sqlSession
-        = sqlSessionFactory.openSession(false);
+    SqlSession sqlSession = sqlSessionFactory.openSession(false);
+
 
     /* 6. Mapper 인터페이스 꺼내기
     * - 마이 바티스가 Mapper 인터페이스를
     *   상속받은 구현체(Proxy객체)를 알아서 만들어 반환*/
     Mapper mapper = sqlSession.getMapper(Mapper.class);
+// 원레는 인터페이스를 객체사용 불가한데 Proxy로
+      // 인터페이스 상속한 객체를 만들어 사용
+
 
     /* 7. 추상 메서드를 호출하여 쿼리 실행 */
     java.util.Date now = mapper.selectDate();
